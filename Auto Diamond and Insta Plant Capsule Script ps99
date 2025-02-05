@@ -1,0 +1,162 @@
+-- Erstelle GUI
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Hintergrund für das GUI
+local background = Instance.new("Frame")
+background.Size = UDim2.new(0, 400, 0, 400)
+background.Position = UDim2.new(0.5, -200, 0.5, -200)
+background.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+background.BackgroundTransparency = 0.6
+background.BorderSizePixel = 0
+background.Parent = screenGui
+
+-- Abgerundete Ecken für das GUI
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 20)
+corner.Parent = background
+
+-- TextBox für den Key
+local keyTextBox = Instance.new("TextBox")
+keyTextBox.Size = UDim2.new(0, 280, 0, 50)
+keyTextBox.Position = UDim2.new(0.5, -140, 0.3, -25)
+keyTextBox.PlaceholderText = "Gib deinen Key ein"
+keyTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+keyTextBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+keyTextBox.BorderSizePixel = 0
+keyTextBox.Font = Enum.Font.GothamBold
+keyTextBox.TextSize = 18
+keyTextBox.Parent = background
+
+-- Abgerundete Ecken für TextBox
+local cornerTextBox = Instance.new("UICorner")
+cornerTextBox.CornerRadius = UDim.new(0, 10)
+cornerTextBox.Parent = keyTextBox
+
+-- Button zum Bestätigen des Keys
+local keyButton = Instance.new("TextButton")
+keyButton.Size = UDim2.new(0, 280, 0, 50)
+keyButton.Position = UDim2.new(0.5, -140, 0.4, 30)
+keyButton.Text = "Key bestätigen"
+keyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+keyButton.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
+keyButton.Font = Enum.Font.GothamBold
+keyButton.TextSize = 20
+keyButton.Parent = background
+
+-- Abgerundete Ecken für Button
+local cornerButton1 = Instance.new("UICorner")
+cornerButton1.CornerRadius = UDim.new(0, 10)
+cornerButton1.Parent = keyButton
+
+-- Button zum Kopieren des Links
+local copyLinkButton = Instance.new("TextButton")
+copyLinkButton.Size = UDim2.new(0, 280, 0, 50)
+copyLinkButton.Position = UDim2.new(0.5, -140, 0.55, 30)
+copyLinkButton.Text = "Copy Link"
+copyLinkButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+copyLinkButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+copyLinkButton.Font = Enum.Font.GothamBold
+copyLinkButton.TextSize = 20
+copyLinkButton.Parent = background
+
+-- Abgerundete Ecken für CopyLink Button
+local cornerButton2 = Instance.new("UICorner")
+cornerButton2.CornerRadius = UDim.new(0, 10)
+cornerButton2.Parent = copyLinkButton
+
+-- Der Link, den du kopieren möchtest
+local link = "https://rkns.link/hyr0o" -- Hier deinen gewünschten Link einfügen
+
+-- Der richtige Key
+local correctKey = "ShadowOnTop" -- Setze hier deinen gewünschten Schlüssel ein
+
+-- Funktion, um den Link zu kopieren
+local function copyLink()
+    setclipboard(link)  -- Diese Funktion kopiert den Link in die Zwischenablage
+    print("Copy Link to Clipboard: " .. link)
+end
+
+-- Funktion, um den Hub zu entfernen, wenn der Key korrekt ist
+local function checkKeyAndRemoveHub()
+    local enteredKey = keyTextBox.Text
+    if enteredKey == correctKey then
+        -- Wenn der Key korrekt ist, entferne den Hub
+        background:Destroy()  -- Löscht das gesamte GUI (Hub)
+
+        -- Hier wird dein zweiter Script ausgeführt, wenn der Key korrekt ist:
+        if game.PlaceId == 8737899170 or game.PlaceId == 16498369169 or game.PlaceId == 17503543197 or game.PlaceId == 15502339080 then
+            local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+            local HumP = game.Players.LocalPlayer.Character.HumanoidRootPart
+            local Window = Rayfield:CreateWindow({
+                Name = "Shadow script",
+                Icon = 0,
+                LoadingTitle = "Shadow script...",
+                LoadingSubtitle = "is loading...",
+                Theme = "Ocean",
+
+                DisableRayfieldPrompts = false,
+                DisableBuildWarnings = false,
+
+                ConfigurationSaving = {
+                    Enabled = true,
+                    FolderName = nil,
+                    FileName = "Bulba hub"
+                },
+
+                Discord = {
+                    Enabled = true,
+                    Invite = "https://discord.gg/AHQUcXQd29",
+                    RememberJoins = true
+                },
+
+                KeySystem = false,
+                KeySettings = {
+                    Title = "Untitled",
+                    Subtitle = "Key System",
+                    Note = "No method of obtaining the key is provided",
+                    FileName = "Key",
+                    SaveKey = true,
+                    GrabKeyFromSite = false,
+                    Key = {"Hello"},
+                }
+            })
+            local Tab = Window:CreateTab("Main", 4483362458)
+            local Divider = Tab:CreateDivider()
+            local Section = Tab:CreateSection("Functions🔨")
+            Rayfield:Notify({
+                Title = "Notification📃",
+                Content = "Shadow script started🟢",
+                Duration = 2,
+                Image = 4483362458,
+            })
+            local RelicFinder = Tab:CreateButton({
+                Name = "Find shiny relics in this place✨",
+                Callback = function()
+                    local OldPos = HumP.CFrame
+                    local HumP = game.Players.LocalPlayer.Character.HumanoidRootPart
+                    for i,d in pairs(workspace.__THINGS.ShinyRelics:GetChildren()) do
+                        for j,v in pairs(workspace.__THINGS.ShinyRelics:GetChildren()[i]:GetDescendants()) do
+                            if tostring(v) == "ClickDetector" then
+                                workspace.__THINGS.ShinyRelics:GetChildren()[i].CFrame = HumP.CFrame
+                                game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Relic_Found"):InvokeServer(unpack({[1] = i-1}))
+                                wait(0.05)
+                            end
+                        end
+                    end
+                end
+            })
+            -- Weitere Buttons und Funktionen kannst du hier hinzufügen.
+        end
+
+    else
+        print("Falscher Key!")
+    end
+end
+
+-- Knopf-Klick-Ereignis für "Key bestätigen"
+keyButton.MouseButton1Click:Connect(checkKeyAndRemoveHub)
+
+-- Knopf-Klick-Ereignis für "Copy Link"
+copyLinkButton.MouseButton1Click:Connect(copyLink)
+
